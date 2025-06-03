@@ -134,6 +134,9 @@ print(props_corrected[['Argentina', 'Uruguay']])
 # D. Conduct a t-test on this modified dataset to assess the test results 
 # with corrected relative frequencies for Argentina and Uruguay.
 
+# This approach (Steps A to D) ensures that any subsequent test accurately reflects 
+# the impact of the feature change by correcting the initial randomization bias.
+
 # 6. Conduct a t-test on conversion rates
 
 # Compare conversion between test and control
@@ -143,3 +146,26 @@ conversion_control = df_corrected[df_corrected['test'] == 0]['conversion']
 t_stat, p_val = ttest_ind(conversion_test, conversion_control)
 
 print(f"\nT-test Results:\nT-statistic: {t_stat:.4f}, P-value: {p_val:.4f}")
+
+# T-test Results:
+# T-statistic: -1.1395, P-value: 0.2545
+
+# T-test Interpretation (After Bias Correction)
+
+# A p-value of 0.2545 is much greater than the typical significance level of 0.05.
+# This means you fail to reject the null hypothesis:
+# There is no statistically significant difference in conversion rates between the test and control groups.
+
+# Why This Matters:
+# After correcting for the initial randomization bias 
+# (where Argentina and Uruguay were underrepresented in the control group), 
+# our A/B test now reflects a fair comparison.
+
+# The initial imbalance could have falsely suggested a difference, 
+# but the corrected test indicates no true effect from the tested variation.
+
+# Conclusion
+# The feature or change tested in the A/B experiment did not lead to a 
+# statistically significant improvement in conversions.
+# The original randomization bias (especially from Argentina and Uruguay) 
+# has been successfully mitigated, so our result is now trustworthy.
