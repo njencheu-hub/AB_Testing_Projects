@@ -184,3 +184,27 @@ print(pd.DataFrame( {"data_type" : ["Full", "Removed_Argentina_Uruguay"],
                          "p_value" : [original_data.pvalue, data_no_AR_UR.pvalue],
                          "t_statistic" : [original_data.statistic, data_no_AR_UR.statistic]
                          }))
+
+# output
+#                    data_type       p_value  t_statistic
+# 0                       Full  1.928918e-13    -7.353895
+# 1  Removed_Argentina_Uruguay  7.200849e-01     0.358346
+
+# There's a significant discrepancy observed in the test results where certain countries 
+# were either overrepresented or underrepresented, leading to a statistically significant 
+# negative t-statistic indicating that the test performed worse than the control. 
+# Upon removing data from these two countries, the results become non-significant.
+
+# At this juncture, you have two main courses of action:
+# 1. Recognize the presence of a bug and engage with the software engineer responsible 
+# for the randomization process. Investigate the root cause of the issue, rectify it, 
+# and then rerun the test. It's essential to delve deeper into the bug's discovery, 
+# as it may hint at broader underlying issues beyond just the identified issue.
+
+# 2. If investigation reveals that everything else was functioning correctly except for 
+# the disparity in those two countries, you could consider adjusting the weights or distribution 
+# for these segments. This adjustment aims to align the relative frequencies of these countries 
+# with others, thereby restoring balance. Subsequently, you can rerun the test to ensure a fair comparison.
+
+# These steps are crucial to maintain the integrity and reliability of A/B test results, 
+# ensuring that decisions based on testing outcomes are sound and accurate.

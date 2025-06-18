@@ -59,8 +59,9 @@ import matplotlib.pyplot as plt
 possible_p2 = np.arange(.105, .155, .005)
 
 print(possible_p2)
-#now let's estimate sample size for all those values and plot them
+# [0.105 0.11  0.115 0.12  0.125 0.13  0.135 0.14  0.145 0.15 ]
 
+#now let's estimate sample size for all those values and plot them
 sample_size = []
 for i in possible_p2:
    p1_and_p2 = sms.proportion_effectsize(0.1, i)
@@ -70,4 +71,4 @@ plt.title("Sample size vs Minimum Effect size")
 plt.xlabel("Sample Size")
 plt.ylabel("Minimum Test Conversion rate")
 plt.savefig("sample_size_vs_conversion_rate.png", dpi=300, bbox_inches='tight')
-plt.show()
+# plt.show()

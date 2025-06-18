@@ -51,6 +51,14 @@ print("t-statistic n/", test_result.statistic)
 #p value
 print("p-value:", test_result.pvalue)
 
+#print test results
+if (test_result.pvalue > 0.05):
+    print("Non-significant results")
+elif (test_result.statistic > 0):
+    print("Statistically better results")
+else:
+    print("Statistically worse results")
+
 # T-Test Results Summary
 # T-statistic: 7.71 (large non-zero value)=> big difference between the groups, 
 # relative to the variation (or noise) in the data.
@@ -64,13 +72,14 @@ print("p-value:", test_result.pvalue)
 # The new version of the site (test group) significantly 
 # improved conversion rates compared to the old version (control group).
 
-#print test results
-if (test_result.pvalue > 0.05):
-    print("Non-significant results")
-elif (test_result.statistic > 0):
-    print("Statistically better results")
-else:
-    print("Statistically worse results")
+# So in this case, the test is winning. Conversion rate is higher (from 4.3% to 5.5%) and the p-value 
+# is super low, suggesting to us that the difference is extremely unlikely to be by chance. 
+# So we can be pretty confident that the new version is better and we should roll it out for all users.
+
+#  A/B Testing Complexity
+# While analyzing A/B test results may seem straightforward once data is organized into a clean table, 
+# the complexity lies in ensuring that certain assumptions are met throughout the testing process. 
+# These assumptions are crucial for conducting a reliable t-test: 
+# Sample Size, Randomization, Independence & Generalization of Test Results
 
 
- 
